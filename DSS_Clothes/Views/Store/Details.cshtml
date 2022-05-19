@@ -1,0 +1,55 @@
+﻿@model DSS_Clothes.Models.Store
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Store</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StoreName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StoreName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StoreYear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StoreYear)
+        </dd>
+         <dd class = "col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Clothes
+                        </th>
+                        
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Designers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Clothes.ClotheName)
+                            </td>
+                            <td>
+                                <a asp-controller="Designer" asp-action="Delete" asp-route-id="@item.DesignerID">Delete</a>
+                            </td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.StoreID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
